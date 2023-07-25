@@ -3,6 +3,10 @@ import Tabella from './components/Tabella.vue'
 import TabelleModificate from './components/TabelleModificate.vue'
 
 export default {
+  components: {
+    Tabella,
+    TabelleModificate,
+  },
   data() {
     return {
       nomeDigitato: '',
@@ -13,7 +17,6 @@ export default {
       vipJSON:[]
     }
   },
-  // components:{Riga},
   methods: {
     aggiungiJSON() {
         if (this.nomeDigitato !=='' && this.cognomeDigitato !=='' && this.telefonoDigitato !=='') {
@@ -39,7 +42,6 @@ export default {
       }
     }
   },
-
   computed: {
   },
 }
