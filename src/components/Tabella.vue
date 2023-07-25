@@ -1,9 +1,49 @@
 <script>
 export default {
+  data() {
+    return {
+      ordineCrescente: true
+    }
+  },
   props: {
     jsonImportato: {
       type: Object,
     }
+  },
+  methods: {
+    rimuoviRiga(index) {
+      this.jsonImportato.splice(index, 1);
+    },
+    ordineNome() {
+      if (this.ordineCrescente) {
+      this.jsonImportato.sort((a, b) => a.nome.localeCompare(b.nome));;  
+      this.ordineCrescente = !this.ordineCrescente;
+      }      
+      else {
+      this.jsonImportato.sort((a, b) => b.nome.localeCompare(a.nome));;  
+      this.ordineCrescente = !this.ordineCrescente;
+      }
+    },
+    ordineCognome() {
+      if (this.ordineCrescente) {
+      this.jsonImportato.sort((a, b) => a.cognome.localeCompare(b.cognome));;  
+      this.ordineCrescente = !this.ordineCrescente;
+      }      
+      else {
+      this.jsonImportato.sort((a, b) => b.cognome.localeCompare(a.cognome));;  
+      this.ordineCrescente = !this.ordineCrescente;
+      }
+    },
+    ordineTelefono() {
+      if (this.ordineCrescente) {
+      this.jsonImportato.sort((a, b) => a.telefono - b.telefono);;  
+      this.ordineCrescente = !this.ordineCrescente;
+      }      
+      else {
+      this.jsonImportato.sort((a, b) => b.telefono - a.telefono);;  
+      this.ordineCrescente = !this.ordineCrescente;
+      }
+    },
   }
 };
 </script>
@@ -15,9 +55,9 @@ export default {
       <table id="strumenti-table">
         <thead>
           <tr v-if="jsonImportato.length > 0">
-            <th class="nome">Nome</th>
-            <th class="cognome">Cognome</th>
-            <th class="telefono">Telefono</th> 
+            <th class="nome" @click="ordineNome">Nome</th>
+            <th class="cognome" @click="ordineCognome">Cognome</th>
+            <th class="telefono" @click="ordineTelefono">Telefono</th> 
             <th></th>
           </tr>
         </thead>
@@ -27,7 +67,7 @@ export default {
             <td>{{ item.cognome }}</td>
             <td>{{ item.telefono }}</td>
             <td>
-              <button>❌</button>
+              <button @click="rimuoviRiga(index)">❌</button>
             </td>
           </tr>
           </tbody>
@@ -101,6 +141,7 @@ h2 {
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
+    margin-left: 40px;
   }
 
   #strumenti-table tbody button:hover {

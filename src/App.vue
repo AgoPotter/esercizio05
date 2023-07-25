@@ -22,18 +22,18 @@ export default {
   },
   methods: {
     aggiungiJSON() {
-        if (this.nomeDigitato !=='' && this.cognomeDigitato !=='' && this.telefonoDigitato !=='') {
+        if (this.nomeDigitato !=='' && this.cognomeDigitato !=='' && this.telefonoDigitato !=='' && this.vipCard !=='') {
           if (this.vipCard==0) {
-          this.clientiJSON.push({
-            nome: this.nomeDigitato,
-            cognome: this.cognomeDigitato,
-            telefono: this.telefonoDigitato,        
-          });
-        } else if (this.vipCard==1) {
-            this.vipJSON.push({
-            nome: this.nomeDigitato,
-            cognome: this.cognomeDigitato,
-            telefono: this.telefonoDigitato,        
+              this.clientiJSON.push({
+                nome: this.nomeDigitato,
+                cognome: this.cognomeDigitato,
+                telefono: this.telefonoDigitato,        
+              });
+          } else if (this.vipCard==1) {
+                this.vipJSON.push({
+                nome: this.nomeDigitato,
+                cognome: this.cognomeDigitato,
+                telefono: this.telefonoDigitato,        
           });
         }
           this.nomeDigitato='';
@@ -43,7 +43,11 @@ export default {
         } else {
         alert("Oh oh... sembra che tu abbia dimenticato di completare tutti i campi.");
       }
-    }
+    },
+    cancellaTabella() {
+      this.clientiJSON=[];
+      this.vipJSON=[];
+    },
   },
   computed: {
   },
@@ -77,6 +81,8 @@ export default {
     <div id="tabellaModificata"  v-if="vipJSON.length > 0">
       <TabelleModificate :jsonImportatoB="vipJSON"/>
     </div>
+    <br>
+    <button @click="cancellaTabella()" id="cancella" v-if="clientiJSON.length>0 || vipJSON.length>0">🗑️ tabella</button>
   </div>
   <br>
   <footer><a href="https://it.freepik.com/foto-gratuito/ragazza-graziosa-sorridente-felice-che-usa-i-suoi-soldi-del-deposito-della-carta-di-credito-per-lo-shopping-che-tiene-i-sacchetti-con-i-vestiti_33059874.htm#query=shopping&position=3&from_view=search&track=sph">Immagine di benzoix</a> su Freepik</footer>
@@ -231,6 +237,13 @@ h1 {
   margin-right: 10px; /* Spazio tra il testo e il pulsante */
 }
 
+#cancella {
+  width: 180px;
+  height: 40px;
+  font-size: 24px;
+  margin-left: 10px;
+}
+
   /* Stile generale per il footer */
 footer {
   background-color: #1e3a5c;
@@ -239,6 +252,9 @@ footer {
   opacity: 0.75;
   padding: 20px; /* Puoi regolare il valore per aumentare o diminuire il padding interno del footer */
   color: white; /* Puoi cambiare il colore del testo a tua discrezione */
+  display: flex;
+  justify-content: center; /* Centra orizzontalmente il contenuto */
+  align-items: center; 
 }
 
 /* Seleziona tutti i link presenti nel footer e cambia il colore del testo quando vengono sovrastati con il mouse */
