@@ -71,10 +71,10 @@ export default {
   </div>
 <br>
   <div class="tabelle">
-    <div id="tabella">
+    <div id="tabella"  v-if="clientiJSON.length > 0">
       <Tabella :jsonImportato="clientiJSON"/>
     </div>
-    <div id="tabellaModificata">
+    <div id="tabellaModificata"  v-if="vipJSON.length > 0">
       <TabelleModificate :jsonImportatoB="vipJSON"/>
     </div>
   </div>
@@ -123,6 +123,7 @@ h1 {
 
     /* Larghezza massima, puoi regolare il valore in base alle tue esigenze */
     width: 1250px;
+    min-height: 100px;
     margin: 0 auto; /* Per centrare il contenitore */
   }
  
