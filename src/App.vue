@@ -71,7 +71,7 @@ export default {
 <br>
   <div class="tabelle">
     <div id="tabella">
-      <Tabella/>
+      <Tabella :jsonImportato="JSON"/>
     </div>
     <div id="tabellaModificata">
       <TabelleModificate/>
