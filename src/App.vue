@@ -1,4 +1,7 @@
 <script>
+/* se usi <script setup> non hai bisogno di importare i components.
+Tuttavia usando la modalità "setup" non riesce più a leggere il codice JS!
+Per questo ho optato per la versione standard. */
 import Tabella from './components/Tabella.vue'
 import TabelleModificate from './components/TabelleModificate.vue'
 
