@@ -78,12 +78,12 @@ export default {
     <div id="tabella"  v-if="clientiJSON.length > 0">
       <Tabella :jsonImportato="clientiJSON"/>
     </div>
+    <button @click="cancellaTabella()" id="cancella" v-if="clientiJSON.length>0 || vipJSON.length>0">🗑️ tabella</button>
     <div id="tabellaModificata"  v-if="vipJSON.length > 0">
       <TabelleModificate :jsonImportatoB="vipJSON"/>
     </div>
     <br>
-    <button @click="cancellaTabella()" id="cancella" v-if="clientiJSON.length>0 || vipJSON.length>0">🗑️ tabella</button>
-  </div>
+    </div>
   <br>
   <footer><a href="https://it.freepik.com/foto-gratuito/ragazza-graziosa-sorridente-felice-che-usa-i-suoi-soldi-del-deposito-della-carta-di-credito-per-lo-shopping-che-tiene-i-sacchetti-con-i-vestiti_33059874.htm#query=shopping&position=3&from_view=search&track=sph">Immagine di benzoix</a> su Freepik</footer>
 </body>
@@ -128,7 +128,7 @@ h1 {
     border-radius: 10px; /* Border radius */
 
     /* Larghezza massima, puoi regolare il valore in base alle tue esigenze */
-    width: 1250px;
+    width: 1425px;
     min-height: 100px;
     margin: 0 auto; /* Per centrare il contenitore */
   }
@@ -143,7 +143,7 @@ h1 {
     border-radius: 10px; /* Border radius */
  
     /* Larghezza massima, puoi regolare il valore in base alle tue esigenze */
-    width: 600px;
+    width: 650px;
     margin-right: 10px; /* Per centrare il contenitore */
   }
  
@@ -157,7 +157,7 @@ h1 {
    border-radius: 10px; /* Border radius */
 
    /* Larghezza massima, puoi regolare il valore in base alle tue esigenze */
-   width: 600px;
+   width: 650px;
    margin-left: 10px;
  }
 
@@ -242,6 +242,7 @@ h1 {
   height: 40px;
   font-size: 24px;
   margin-left: 10px;
+  margin-right: 10px;
 }
 
   /* Stile generale per il footer */
