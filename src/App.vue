@@ -75,7 +75,7 @@ export default {
       <Tabella :jsonImportato="clientiJSON"/>
     </div>
     <div id="tabellaModificata">
-      <TabelleModificate/>
+      <TabelleModificate :jsonImportatoB="vipJSON"/>
     </div>
   </div>
   <br>
