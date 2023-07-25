@@ -37,9 +37,16 @@ export default {
 </template>
 
 <style>
+h2 {
+  font-family: 'Pirata One', cursive;
+  text-align: center;
+  color: black;
+  font-size: 30px;
+}
+
   /* Colori */
   :root {
-    --primary-color: #1e3a5c;
+    --primary-color: rgba(30, 58, 92, 0.75);
     --secondary-color: #4a90e2;
   }
 

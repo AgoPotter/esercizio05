@@ -52,8 +52,9 @@ export default {
 
 <template>
 <body>
+  <br>
   <div class="input">
-    <h1>Registrazione nuove cliente</h1>
+    <h1>Registrazione <br> NUOVO CLIENTE</h1>
     <input v-model="nomeDigitato" type="text" placeholder="Nome" id="nome" />
     <input v-model="cognomeDigitato" type="text" placeholder="Cognome" id="cognome" />
     <input v-model="telefonoDigitato" type="text" placeholder="Telefono" id="telefono" />
@@ -77,7 +78,7 @@ export default {
       <TabelleModificate/>
     </div>
   </div>
-
+  <br>
   <footer><a href="https://it.freepik.com/foto-gratuito/ragazza-graziosa-sorridente-felice-che-usa-i-suoi-soldi-del-deposito-della-carta-di-credito-per-lo-shopping-che-tiene-i-sacchetti-con-i-vestiti_33059874.htm#query=shopping&position=3&from_view=search&track=sph">Immagine di benzoix</a> su Freepik</footer>
 </body>
 </template>
@@ -90,7 +91,9 @@ body {
 }
 
 h1 {
-  color: antiquewhite;
+  font-family: 'Pirata One', cursive;
+  text-align: center;
+  color: #eedd82;
   font-size: 30px;
 }
   /* Stile generale per il contenitore dei campi di input e del pulsante */
@@ -98,7 +101,7 @@ h1 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: #1e3a5c; /* Sfondo blu scuro */
+    background-color: rgba(30, 58, 92, 0.75); /* Sfondo blu scuro */
     padding: 20px;
     border: 2px solid #4a90e2; /* Bordo blu chiaro */
     border-radius: 10px; /* Border radius */
@@ -113,7 +116,7 @@ h1 {
     display: flex;
     flex-direction: row;
     align-items: center;
-    background-color: #1e3a5c; /* Sfondo blu scuro */
+    background-color: rgba(30, 58, 92, 0.75); /* Sfondo blu scuro */
     padding: 20px;
     border: 2px solid #4a90e2; /* Bordo blu chiaro */
     border-radius: 10px; /* Border radius */
