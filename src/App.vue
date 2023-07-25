@@ -16,7 +16,7 @@ export default {
       cognomeDigitato: '',
       telefonoDigitato: '',
       vipCard: '',
-      JSON:[],
+      clientiJSON:[],
       vipJSON:[]
     }
   },
@@ -24,7 +24,7 @@ export default {
     aggiungiJSON() {
         if (this.nomeDigitato !=='' && this.cognomeDigitato !=='' && this.telefonoDigitato !=='') {
           if (this.vipCard==0) {
-          this.JSON.push({
+          this.clientiJSON.push({
             nome: this.nomeDigitato,
             cognome: this.cognomeDigitato,
             telefono: this.telefonoDigitato,        
@@ -71,7 +71,7 @@ export default {
 <br>
   <div class="tabelle">
     <div id="tabella">
-      <Tabella :jsonImportato="JSON"/>
+      <Tabella :jsonImportato="clientiJSON"/>
     </div>
     <div id="tabellaModificata">
       <TabelleModificate/>
@@ -119,7 +119,7 @@ h1 {
     border-radius: 10px; /* Border radius */
 
     /* Larghezza massima, puoi regolare il valore in base alle tue esigenze */
-    max-width: 1000px;
+    width: 1250px;
     margin: 0 auto; /* Per centrare il contenitore */
   }
  
@@ -131,10 +131,10 @@ h1 {
     padding: 20px;
     border: 2px solid #4a90e2; /* Bordo blu chiaro */
     border-radius: 10px; /* Border radius */
-
+ 
     /* Larghezza massima, puoi regolare il valore in base alle tue esigenze */
-    width: 400px;
-    margin: 0 auto; /* Per centrare il contenitore */
+    width: 600px;
+    margin-right: 10px; /* Per centrare il contenitore */
   }
  
  #tabellaModificata {
@@ -147,8 +147,8 @@ h1 {
    border-radius: 10px; /* Border radius */
 
    /* Larghezza massima, puoi regolare il valore in base alle tue esigenze */
-   width: 400px;
-   margin: 0 auto; /* Per centrare il contenitore */
+   width: 600px;
+   margin-left: 10px;
  }
 
   /* Stile per i campi di input */
