@@ -14,35 +14,52 @@ export default {
     return {
       nomeDigitato: '',
       cognomeDigitato: '',
-      telefonoDigitato: '',
-      vipCard: '',
-      clientiJSON:[],
-      vipJSON:[]
+      telefonoDigitato: null,
+      vipCard: true,
+      // clientiJSON:[],
+      // vipJSON:[]
+      arrayTotale:[]
     }
   },
   methods: {
     aggiungiJSON() {
-        if (this.nomeDigitato !=='' && this.cognomeDigitato !=='' && this.telefonoDigitato !=='' && this.vipCard !=='') {
-          if (this.vipCard==0) {
-              this.clientiJSON.push({
-                nome: this.nomeDigitato,
-                cognome: this.cognomeDigitato,
-                telefono: this.telefonoDigitato,        
-              });
-          } else if (this.vipCard==1) {
-                this.vipJSON.push({
-                nome: this.nomeDigitato,
-                cognome: this.cognomeDigitato,
-                telefono: this.telefonoDigitato,        
-          });
-        }
+        if (this.nomeDigitato !=='' && this.cognomeDigitato !=='' && this.telefonoDigitato!=null) {
+          // if (this.vipCard) {
+          //     this.vipJSON.push({
+          //       nome: this.nomeDigitato,
+          //       cognome: this.cognomeDigitato,
+          //       telefono: this.telefonoDigitato,        
+          //     });
+          // } else {
+          //       this.clientiJSON.push({
+          //       nome: this.nomeDigitato,
+          //       cognome: this.cognomeDigitato,
+          //       telefono: this.telefonoDigitato,        
+          //   });
+          // }
+          this.arrayTotale.push({
+            nome: this.nomeDigitato,
+            cognome: this.cognomeDigitato,
+            telefono: this.telefonoDigitato,    
+            isVip: this.vipCard
+          })
           this.nomeDigitato='';
           this.cognomeDigitato='';
-          this.telefonoDigitato='';
-          this.vipCard='';
+          this.telefonoDigitato=null;
+          this.vipCard=true;
         } else {
         alert("Oh oh... sembra che tu abbia dimenticato di completare tutti i campi.");
       }
+    },
+    // eliminaRiga(index){
+    //   this.clientiJSON.splice(index, 1);
+    // },
+    // eliminaRigaVip(index){
+    //   this.vipJSON.splice(index, 1);
+    // },
+    eliminaRiga(index,type){
+      var arrayToEliminare = type=='clienti'?this.clientiJSON:this.vipJSON
+      arrayToEliminare.splice(index, 1);
     },
     cancellaTabella() {
       this.clientiJSON=[];
@@ -50,6 +67,12 @@ export default {
     },
   },
   computed: {
+    vipJSON(){
+      return this.arrayTotale.filter(item=>item.isVip)
+    },
+    clientiJSON(){
+      return this.arrayTotale.filter(item=>!item.isVip)
+    },
   },
 }
 </script>
@@ -61,13 +84,13 @@ export default {
     <h1>Registrazione <br> NUOVO CLIENTE</h1>
     <input v-model="nomeDigitato" type="text" placeholder="Nome" id="nome" />
     <input v-model="cognomeDigitato" type="text" placeholder="Cognome" id="cognome" />
-    <input v-model="telefonoDigitato" type="text" placeholder="Telefono" id="telefono" />
+    <input v-model="telefonoDigitato" type="number" placeholder="Telefono" id="telefono" />
 
     <div id="vipCard">
       <label>Vip Card</label>
         <select v-model="vipCard" type="number" id="quantita" name="vipCard">
-          <option value="0">No</option>
-          <option value="1">Sì</option>
+          <option :value="false">No</option>
+          <option :value="true">Sì</option>
         </select>
     </div>
     <br>
@@ -75,12 +98,13 @@ export default {
   </div>
 <br>
   <div class="tabelle">
-    <div id="tabella"  v-if="clientiJSON.length > 0">
-      <Tabella :jsonImportato="clientiJSON"/>
+    <div id="tabella">
+      <Tabella :jsonImportato="clientiJSON" @pressioneIconaX="(index)=>eliminaRiga(index,'clienti')"/>
     </div>
     <button @click="cancellaTabella()" id="cancella" v-if="clientiJSON.length>0 || vipJSON.length>0">🗑️ tabella</button>
-    <div id="tabellaModificata"  v-if="vipJSON.length > 0">
-      <TabelleModificate :jsonImportatoB="vipJSON"/>
+    <div id="tabellaModificata">
+      <!-- <TabelleModificate :jsonImportatoB="vipJSON"/> -->
+      <Tabella :jsonImportato="vipJSON" @pressioneIconaX="(index)=>eliminaRiga(index,'vip')"/>
     </div>
     <br>
     </div>
@@ -162,7 +186,7 @@ h1 {
  }
 
   /* Stile per i campi di input */
-  .input input[type="text"] {
+  .input input[type="text"],.input input[type="number"] {
     width: 100%; /* Riempiono tutto lo spazio disponibile */
     padding: 10px;
     font-size: 18px; /* Testo grande */

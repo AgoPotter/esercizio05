@@ -5,11 +5,7 @@ export default {
       ordineCrescente: true
     }
   },
-  props: {
-    jsonImportatoB: {
-      type: Object,
-    }
-  },
+  props: ['jsonImportatoB'],
   methods: {
     rimuoviRiga(index) {
       this.jsonImportatoB.splice(index, 1);
@@ -46,19 +42,18 @@ export default {
     },
   },
   computed: {
-    arrayInMaiuscolo() {
-  // Utilizziamo il metodo map() per iterare attraverso gli elementi dell'array jsonImportatoB
-  const arrayMaiuscolo = this.jsonImportatoB.map(function(elemento) {
-    // Per ciascun elemento, creiamo un nuovo oggetto con tutte le proprietà originali
-    return {
-      ...elemento, /* Utilizziamo l'operatore di propagazione per copiare tutte le proprietà originali
+     // Per ciascun elemento, creiamo un nuovo oggetto con tutte le proprietà originali
+     /* Utilizziamo l'operatore di propagazione per copiare tutte le proprietà originali
     L'operatore di propagazione (...elemento) viene utilizzato qui per copiare tutte le proprietà 
     di un oggetto elemento all'interno di un nuovo oggetto. In altre parole, stiamo creando una 
     copia dell'oggetto elemento in modo da mantenerne tutte le proprietà e i valori originali.
         */ 
-    nome: elemento.nome.toUpperCase(), // Convertiamo il valore della proprietà "nome" in maiuscolo
-    cognome: elemento.cognome.toUpperCase(), // Convertiamo il valore della proprietà "cognome" in maiuscolo
-      // La proprietà "numero di telefono" rimarrà inalterata poiché non viene modificata qui
+    arrayInMaiuscolo() {
+    const arrayMaiuscolo = this.jsonImportatoB.map(function(elemento) { // Utilizziamo il metodo map() per iterare attraverso gli elementi dell'array jsonImportatoB   
+    return {
+      ...elemento, // La proprietà "numero di telefono" rimarrà inalterata poiché non viene modificata qui
+      nome: elemento.nome.toUpperCase(), // Convertiamo il valore della proprietà "nome" in maiuscolo
+      cognome: elemento.cognome.toUpperCase(), // Convertiamo il valore della proprietà "cognome" in maiuscolo
     };
   });
   // Restituiamo l'array con i valori "nome" e "cognome" convertiti in maiuscolo

@@ -5,14 +5,17 @@ export default {
       ordineCrescente: true
     }
   },
-  props: {
-    jsonImportato: {
-      type: Object,
-    }
-  },
+  props: ['jsonImportato'],
+  // props: {
+  //   jsonImportato: {
+  //     type: Object,
+  //   }
+  // },
   methods: {
     rimuoviRiga(index) {
-      this.jsonImportato.splice(index, 1);
+      // this.jsonImportato.splice(index, 1);
+      //non lo deve fare lui ma demanda la logica al componente padre
+      this.$emit('pressioneIconaX',index);
     },
     ordineNome() {
       if (this.ordineCrescente) {
